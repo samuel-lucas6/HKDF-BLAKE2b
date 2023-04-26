@@ -35,6 +35,7 @@ public static class HkdfBlake2b
         Span<byte> prk = stackalloc byte[HashSize];
         Extract(prk, ikm, salt);
         Expand(okm, prk, info);
+        CryptographicOperations.ZeroMemory(prk);
     }
 
     public static void Extract(Span<byte> prk, ReadOnlySpan<byte> ikm, ReadOnlySpan<byte> salt = default)
